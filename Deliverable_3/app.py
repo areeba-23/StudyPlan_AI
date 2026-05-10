@@ -605,9 +605,16 @@ if st.session_state.predicted_score is not None:
         desired_range = st.session_state.selected_range
         query         = input_df[feature_names].astype(float)
 
+
+
+
+
         with st.spinner("Generating your personalized plans..."):
             try:
-                full_df  = pd.read_csv('processed_student_data.csv')
+                BASE_DIR = os.path.dirname(__file__)
+                csv_path = os.path.join(BASE_DIR, "processed_student_data.csv")
+
+                full_df = pd.read_csv(csv_path)
                 train_df = full_df[feature_names].astype(float).copy()
                 train_df['Exam_Score'] = full_df['Exam_Score'].values
 
